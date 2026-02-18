@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="autor" content="Alicia R. G.">
+    <meta name="generator" content="Visual Studio Code">
+    <meta name="robots" content="index, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generador de preguntas aleatorias para opositores">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link type="java" href="styles.css"/>
+    <title>Test opositores</title>
+</head>
+<body>
+    <nav>
+        <button class="btn-nav quiz active" onclick="show('quiz')">Preguntas aleatorias</button><button class="btn-nav editor" onclick="show('editor')">Meter los datos</button>
+    </nav>
+    
+    <!-- ================= QUIZ ================= -->
+    
+    <div id="quiz" class="section active">
+        <p id="statement">No hay preguntas aún.</p>
+        <div id="answers"></div>
+        <button class="btn-primary" onclick="newQuestion()">Otra pregunta</button>
+    </div>
+    
+    <!-- ================= EDITOR ================= -->
+    
+    <div id="editor" class="section">
+        <h2>Editor de preguntas</h2>
+        <div class="buttons">
+            <div class="left">
+                <button class="btn-primary" onclick="addRow()">Añadir pregunta</button>
+                <button class="btn-primary" onclick="deleteAll()">Borrar tabla</button>
+            </div>
+            <div class="right">
+                <button class="btn-primary" onclick="downloadJSON()">Descargar a JSON</button>
+                <button class="btn-primary" onclick="document.getElementById('fileInput').click()">Cargar JSON</button>
+                <input type="file" id="fileInput" accept=".json" style="display:none" onchange="loadJSON(event)">
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Enunciado</th>
+                    <th>Correcta</th>
+                    <th>Incorrecta 1</th>
+                    <th>Incorrecta 2</th>
+                    <th>Incorrecta 3</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="table-data"></tbody>
+        </table>
+    </div>
+
+    <!-- ================= MODAL ================= -->
+
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+        <p id="modalMessage"></p>
+        <div class="modal-buttons">
+            <button class="btn-primary" id="modalConfirm">Aceptar</button>
+            <button class="btn-secondary" id="modalCancel" style="display:none;">Cancelar</button>
+        </div>
+        </div>
+    </div>
+  
+    <script src="script.js"></script>
+</body>
+</html>
