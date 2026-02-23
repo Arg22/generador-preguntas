@@ -7,7 +7,7 @@
     <meta name="generator" content="Visual Studio Code">
     <meta name="robots" content="index, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Generador de preguntas aleatorias para opositores">
+    <meta name="description" content="Generador de preguntas aleatorias con estructura JSON">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link type="java" href="styles.css"/>
     <title>Test opositores</title>
@@ -22,7 +22,13 @@
     <div id="quiz" class="section active">
         <p id="statement">No hay preguntas aún.</p>
         <div id="answers"></div>
-        <button class="btn-primary" onclick="newQuestion()">Otra pregunta</button>
+        <div class="bottom">
+            <button class="btn-primary" onclick="newQuestion()">Otra pregunta</button>
+            <div class="counter">
+                <p>Acertadas: <span id="corrects"></span></p>
+                <p>Falladas: <span id="incorrects"></span></p>
+            </div>
+        </div>
     </div>
     
     <!-- ================= EDITOR ================= -->

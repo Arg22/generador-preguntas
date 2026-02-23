@@ -1,5 +1,7 @@
     
     let questions = [];
+    let correctCount = 0;
+    let incorrectCount = 0;
     
     // ================= Navegación =================
     
@@ -13,48 +15,52 @@
     // ================= QUIZ =================
     
     function newQuestion(){
-
+        
         if(questions.length === 0){
             document.getElementById("statement").textContent = "No hay preguntas aún.";
             document.getElementById("answers").innerHTML = "";
             return;
         }
-    
+        
         const q = questions[Math.floor(Math.random() * questions.length)];
-    
+        
         document.getElementById("statement").textContent = q.enunciado;
-    
+        
         let answers = [
             q.correcta,
             ...q.incorrectas
         ];
-    
+        
         // mezclar respuestas
         answers.sort(() => Math.random() - 0.5);
-    
+        
         const container = document.getElementById("answers");
         container.innerHTML = "";
-    
+        
         answers.forEach(answer => {
-    
+            
             const btn = document.createElement("button");
             btn.textContent = answer;
             btn.className = "btn-answer";
-    
+            
             btn.onclick = () => {
-    
+                
                 document.querySelectorAll(".btn-answer").forEach(b=>{
                     b.disabled = true;
                 });
-    
+                
                 if(answer === q.correcta){
-    
+                    
                     btn.classList.add("correct");
-    
+                    correctCount++;
+                    document.getElementById("corrects").textContent = correctCount;
+                    
                 } else {
-    
+                    
                     btn.classList.add("wrong");
-    
+                    incorrectCount++;
+                    document.getElementById("incorrects").textContent = incorrectCount;
+                    
                     document.querySelectorAll(".btn-answer").forEach(b=>{
                         if(b.textContent === q.correcta){
                             b.classList.add("correct");
@@ -62,10 +68,13 @@
                     });
                 }
             };
-    
+            
             container.appendChild(btn);
         });
     }
+
+    document.getElementById("corrects").textContent = correctCount;
+    document.getElementById("incorrects").textContent = incorrectCount;
     
     // ================= EDITOR =================
     
@@ -107,9 +116,9 @@
                 enunciado: inputs[0].value,
                 correcta: inputs[1].value,
                 incorrectas: [
-                inputs[2].value,
-                inputs[3].value,
-                inputs[4].value
+                    inputs[2].value,
+                    inputs[3].value,
+                    inputs[4].value
                 ]
             });
         });
@@ -145,25 +154,25 @@
         };
         reader.readAsText(file);
     }
-
+    
     // ================= MODAL =================
-
+    
     function showModal(message, onConfirm = null, showCancel = false){
         const modal = document.getElementById("customModal");
         const msg = document.getElementById("modalMessage");
         const confirmBtn = document.getElementById("modalConfirm");
         const cancelBtn = document.getElementById("modalCancel");
-    
+        
         msg.textContent = message;
         modal.classList.add("show");
-    
+        
         cancelBtn.style.display = showCancel ? "inline-block" : "none";
-    
+        
         confirmBtn.onclick = ()=>{
             modal.classList.remove("show");
             if(onConfirm) onConfirm();
         };
-    
+        
         cancelBtn.onclick = ()=>{
             modal.classList.remove("show");
         };

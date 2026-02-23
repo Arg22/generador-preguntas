@@ -179,6 +179,19 @@ table {
     padding: 15px;
 }
 
+.bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.counter{
+    display: flex;
+    gap: 25px;
+    p {
+        min-width: 125px;
+    }
+}
+
 
 /* ================= MODAL ================= */
 

@@ -146,6 +146,19 @@ table tbody tr:nth-child(even) input {
   padding: 15px;
 }
 
+.bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.counter {
+  display: flex;
+  gap: 25px;
+}
+.counter p {
+  min-width: 125px;
+}
+
 /* ================= MODAL ================= */
 .modal {
   display: none;
